@@ -86,7 +86,7 @@ static bool hasListeners = NO;
     
     if (error) {
         NSLog(@"Error %@ :%@", characteristic.UUID, error);
-        [self invokeAndClearDictionary:readCallbacks withKey:key usingParameters:@[error, [NSNull null]]];
+        [self invokeAndClearDictionary:readCallbacks withKey:key usingParameters:@[error.localizedDescription, [NSNull null]]];
         return;
     }
     NSLog(@"Read value [%@]: (%lu) %@", characteristic.UUID, [characteristic.value length], characteristic.value);
@@ -109,7 +109,7 @@ static bool hasListeners = NO;
                 descriptor.UUID,
                 descriptor.characteristic.UUID,
                 error);
-        [self invokeAndClearDictionary:readDescriptorCallbacks withKey:key usingParameters:@[error, [NSNull null]]];
+        [self invokeAndClearDictionary:readDescriptorCallbacks withKey:key usingParameters:@[error.localizedDescription, [NSNull null]]];
         return;
     }
 
